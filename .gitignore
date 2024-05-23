@@ -13,6 +13,9 @@ target/
 *.ipr
 
 .idea/
+
+
+test-output/
 ### Eclipse ###
 .apt_generated
 .classpath
