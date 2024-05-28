@@ -11,8 +11,10 @@ Feature: Login as a Customer and deposit
     Then I should see welcome
     Then I select the first account
     Then I click deposit button
-    Then I enter the amount <amount>
-#     Then the deposit should be successful
+    Then I enter the <amount>
+    Then I click deposit button_2
+    Then the deposit should be successful
+    Then Select logout button
     Examples:
       | amount |
       | 1500   |

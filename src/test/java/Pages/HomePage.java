@@ -28,13 +28,13 @@ public class HomePage {
     }
 
     public void clickCustomerLoginButton() {
-        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(15));
         wait.until (ExpectedConditions.visibilityOf(customer_login_xpath));
         customer_login_xpath.click();
     }
 
     public void selectCustomerName(){
-        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(15));
         wait.until (ExpectedConditions.visibilityOf (select_Customer_Name));
         select_Customer_Name.click ();
         Select select = new Select (select_Customer_Name);
@@ -44,5 +44,7 @@ public class HomePage {
  public void clickLoginButton(){
      Login_Button.click();
  }
+
+
 
 }

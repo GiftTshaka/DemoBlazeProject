@@ -20,27 +20,53 @@ public class AccountPage {
     @FindBy(xpath = "//input[@placeholder='amount']")
     WebElement Amount_xpath;
 
+    @FindBy(xpath = "//button[@type='submit'][contains(.,'Deposit')]")
+    WebElement Deposit_Button2;
+
+    @FindBy(xpath = "//span[@class='error ng-binding'][contains(.,'Deposit Successful')]")
+    WebElement Deposit_Successful;
+
+    @FindBy(xpath = "//button[@ng-show='logout'][contains(.,'Logout')]")
+    WebElement Click_Logout_Button;
 
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
     }
 
-        public void selectAccount()
-        {
-            WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(10));
-            wait.until (ExpectedConditions.visibilityOf (select_Account));
-            select_Account.click ();
-            Select select = new Select (select_Account);
-            select.selectByVisibleText ("1001");
-        }
-        public void clickDepositButton(){
-            Deposit_Button.click();
-        }
-        public void enterAmount(String amount){
-            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(Amount_xpath));
-            Amount_xpath.clear();
-            Amount_xpath.sendKeys(amount);
-        }
+    public void selectAccount() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(select_Account));
+        select_Account.click();
+        Select select = new Select(select_Account);
+        select.selectByVisibleText("1001");
     }
 
+    public void clickDepositButton() {
+        Deposit_Button.click();
+    }
+
+    public void enterAmount(String amount) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(Amount_xpath));
+        Amount_xpath.clear();
+        Amount_xpath.sendKeys(amount);
+
+
+    }
+
+    public void clickDepositButton2() {
+        Deposit_Button2.click();
+    }
+
+    public void verifyDepositSuccess() {
+
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(Deposit_Successful));
+
+
+    }
+
+
+    public void logOutButton() {
+        Click_Logout_Button.click();
+    }
+}
