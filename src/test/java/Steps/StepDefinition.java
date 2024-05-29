@@ -1,86 +1,131 @@
 package Steps;
 
-
-import Pages.HomePage;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import org.testng.Assert;
 
 public class StepDefinition extends Base {
 
-
     @Given("I am logged in as a customer")
     public void I_am_logged_in_as_a_customer() {
-
     }
 
-    @When("I click the customer login button")
+    @When("I click the 'Customer Login' button")
     public void i_click_the_customer_login_button() {
-        homePage.clickCustomerLoginButton();
-
+        loginPage.clickCustomerLoginButton();
     }
 
     @Then("I should see home screen")
     public void i_should_see_home_screen() {
-
     }
 
     @Then("I select first customer name")
     public void i_select_first_customer_name() {
-        homePage.selectCustomerName();
+        customerPage.selectCustomerName();
     }
 
-    @Then("I click login button")
+    @Then("I click 'Login' button")
     public void i_click_login_button() {
-        homePage.clickLoginButton();
+       customerPage.clickLoginButton();
     }
 
     @Then("I should see welcome")
     public void i_should_see_welcome() {
-
     }
 
-    @Then("I select the first account")
+    @And("I select the first account")
     public void i_select_the_first_account() {
         accountPage.selectAccount();
     }
 
-    @Then("I click deposit button")
-    public void i_click_deposit_button() {
+    @And("I click 'Deposit' tab")
+    public void i_click_deposit_tab() {
         accountPage.clickDepositButton();
-
     }
 
-    //    @Then("^I enter the (.*)$")
-//    public void i_select_the_first_account(int amount) {
+//    2nd solution
+//    @Then("^I deposit (\\d+) into the field$ ")
+//    @Then("^I deposit (.*)$")
+//    public void i_deposit(int amount) {
 //        accountPage.enterAmount(String.valueOf(amount));
-//
-//
 //    }
-    @Then("^I enter the amount in all accounts(.*)$")
-    public void i_enter_the_in_all_accounts(Integer amount) {
-        accountPage.DepositInAllAccounts(amount);
+
+
+    @Then("I deposit {int} into the field")
+    public void i_deposit(int amount) {
+        accountPage.enterAmount(String.valueOf(amount));
     }
 
-    @Then("I click deposit button_2")
-    public void i_click_deposit_button_2() {
-        accountPage.clickDepositButton2();
-
-
+    @And("I click 'Deposit' button")
+    public void i_click_deposit_button() {
+        accountPage.clickDepositSubmitButton();
     }
 
-    @Then("the deposit should be successful")
-    public void the_deposit_should_be_successful() {
+    @Then("I validate the deposit was successful")
+    public void i_validate_deposit() {
         accountPage.verifyDepositSuccess();
-
     }
 
-    @Then("Select logout button")
-    public void Select_logout_button() {
-        accountPage.logOutButton();
+    @Then("I deposit {} into each account")
+    public void i_deposit_into_each_account(int amount){
+        accountPage.depositOnEachAccount(amount);
+        accountPage.verifyDepositSuccess();
+        accountPage.clickDepositButton();
+        accountPage.enterAmount(String.valueOf(amount));
+        accountPage.clickDepositSubmitButton();
+    }
 
+//    @Then("I validate deposit was successful")
+//    public void i_validate_deposits(){
+//        accountPage.verifyDepositSuccessOnEachAccount();
+//    }
+
+    @When("I open transactions")
+    public void i_open_trxs(){
+        accountPage.openTransactions();
+    }
+
+    @Then("I validate the transaction appears")
+    public void i_validate_trxs(){
+        accountPage.validateTransactions();
+    }
+
+    @And("I click 'Withdrawl' tab")
+    public void open_withdrawal(){
+        accountPage.clickWithdrawalButton();
+    }
+
+    @And("I withdraw {int}")
+    public void i_withdraw(int amount){
+        accountPage.withdrawAmount(String.valueOf(amount));
+    }
+
+    @And("I click 'Withdraw' button")
+    public void i_click_withdraw_button() {
+        accountPage.clickWithdrawSubmitButton();
+    }
+
+    @Then("I validate the current balance is the original balance")
+    public void i_validate_balance(){
+        //accountPage.validateOriginalBalance();
+        Assert.assertTrue(accountPage.isBalanceRestored());
+    }
+
+    @And("I logout")
+    public void i_click_logout_button() {
+        accountPage.ClickLogoutButton();
+    }
+
+//    @AfterStep
+//    public void addAScreenshot(Scenario scenario) {
+//        if (scenario.isFailed()) {
+//            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+//            scenario.attach(screenshot, "image/png", "image");
+//        }
+//    }
+
+    @After
+    public void closeBrowser() {
+        driver.quit();
     }
 }
