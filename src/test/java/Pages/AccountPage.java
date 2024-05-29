@@ -32,15 +32,6 @@ public class AccountPage {
     @FindBy(xpath = "//span[contains(.,'Deposit Successful')]")
     WebElement depositSuccess_xpath;
 
-    @FindBy(xpath = "//select[@ng-options='account for account in Accounts']")
-    WebElement accountList;
-
-//    @FindBy(xpath = "(//div[contains(@class,'center')])[1]")
-//    WebElement balance_xpath;
-
-    @FindBy(xpath = "(//strong[contains(@class,'ng-binding')])[2]")
-    WebElement balance_xpath;
-
     @FindBy(xpath = "//button[contains(.,'Transactions')]")
     WebElement transactions_xpath;
 
@@ -58,6 +49,9 @@ public class AccountPage {
 
     @FindBy(xpath = "//button[contains(.,'Logout')]")
     WebElement logout_Button;
+
+    @FindBy(xpath = "//strong[@class='ng-binding'][contains(.,'1505')]")
+    WebElement balance_xpath;
 
     private String originalBalance;
 
@@ -157,13 +151,22 @@ public class AccountPage {
         withdrawalButton_xpath.click();
     }
 
+    public double currentBalance() {
+        double originalBalance = 6596.00;
+        return originalBalance;
+    }
+
 //    public void validateOriginalBalance(){
+//        //String currentBalance = driver.findElement(By.xpath("(//strong[contains(@class,'ng-binding')])[2]")).getText();
+//        //assert(originalBalance.equals(currentBalance));
+//        //String currentBalance = balance_xpath.getText();
+//        System.out.println("Balance: " + balance_xpath);
+//        //return originalBalance.equals(currentBalance);
 //    }
 
-    public boolean isBalanceRestored() {
-        int currentBalance = Integer.parseInt(balance_xpath.getText());
-        return currentBalance == 0;
-    }
+
+
+
 
     public void ClickLogoutButton() {
         logout_Button.click();

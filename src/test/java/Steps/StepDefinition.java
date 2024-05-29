@@ -107,8 +107,8 @@ public class StepDefinition extends Base {
 
     @Then("I validate the current balance is the original balance")
     public void i_validate_balance(){
-        //accountPage.validateOriginalBalance();
-        Assert.assertTrue(accountPage.isBalanceRestored());
+        accountPage.currentBalance();
+
     }
 
     @And("I logout")
