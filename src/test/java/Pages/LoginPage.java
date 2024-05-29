@@ -5,24 +5,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
 
-public class HomePage {
-
+public class LoginPage {
 
     public WebDriver driver;
 
-    @FindBy(xpath = "//button[contains(@ng-click,'customer()')]")
+    @FindBy(xpath = "//button[contains(.,'Customer Login')]")
     WebElement customer_login_xpath;
-    public HomePage(WebDriver driver) {
+
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void clickCustomerLoginButton() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(customer_login_xpath));
         customer_login_xpath.click();
     }
-
-
-    }
+}
