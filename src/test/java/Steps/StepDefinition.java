@@ -3,6 +3,11 @@ package Steps;
 
 import Pages.HomePage;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class StepDefinition extends Base {
 
@@ -49,11 +54,15 @@ public class StepDefinition extends Base {
 
     }
 
-    @Then("^I enter the (.*)$")
-    public void i_select_the_first_account(int amount) {
-        accountPage.enterAmount(String.valueOf(amount));
-
-
+    //    @Then("^I enter the (.*)$")
+//    public void i_select_the_first_account(int amount) {
+//        accountPage.enterAmount(String.valueOf(amount));
+//
+//
+//    }
+    @Then("^I enter the amount in all accounts(.*)$")
+    public void i_enter_the_in_all_accounts(Integer amount) {
+        accountPage.DepositInAllAccounts(amount);
     }
 
     @Then("I click deposit button_2")

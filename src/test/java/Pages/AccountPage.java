@@ -65,6 +65,21 @@ public class AccountPage {
 
     }
 
+    public void DepositInAllAccounts(Integer amount){
+        Deposit_Button.click();
+
+        for (int i = 1001;i<=1003;i++){
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(select_Account));
+            select_Account.click();
+            Select select = new Select(select_Account);
+            select.selectByVisibleText(Integer.toString(i));
+            enterAmount(Integer.toString(amount));
+            clickDepositButton2();
+            verifyDepositSuccess();
+        }
+    }
+
 
     public void logOutButton() {
         Click_Logout_Button.click();
