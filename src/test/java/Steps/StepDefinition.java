@@ -26,7 +26,7 @@ public class StepDefinition extends Base {
 
     @Then("I click 'Login' button")
     public void i_click_login_button() {
-       customerPage.clickLoginButton();
+        customerPage.clickLoginButton();
     }
 
     @Then("I should see welcome")
@@ -67,7 +67,7 @@ public class StepDefinition extends Base {
     }
 
     @Then("I deposit {} into each account")
-    public void i_deposit_into_each_account(int amount){
+    public void i_deposit_into_each_account(int amount) {
         accountPage.depositOnEachAccount(amount);
         accountPage.verifyDepositSuccess();
         accountPage.clickDepositButton();
@@ -81,22 +81,22 @@ public class StepDefinition extends Base {
 //    }
 
     @When("I open transactions")
-    public void i_open_trxs(){
+    public void i_open_trxs() {
         accountPage.openTransactions();
     }
 
     @Then("I validate the transaction appears")
-    public void i_validate_trxs(){
+    public void i_validate_trxs() {
         accountPage.validateTransactions();
     }
 
     @And("I click 'Withdrawl' tab")
-    public void open_withdrawal(){
+    public void open_withdrawal() {
         accountPage.clickWithdrawalButton();
     }
 
     @And("I withdraw {int}")
-    public void i_withdraw(int amount){
+    public void i_withdraw(int amount) {
         accountPage.withdrawAmount(String.valueOf(amount));
     }
 
@@ -106,7 +106,7 @@ public class StepDefinition extends Base {
     }
 
     @Then("I validate the current balance is the original balance")
-    public void i_validate_balance(){
+    public void i_validate_balance() {
         accountPage.currentBalance();
 
     }
@@ -122,6 +122,7 @@ public class StepDefinition extends Base {
 //            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 //            scenario.attach(screenshot, "image/png", "image");
 //        }
+//
 //    }
 
     @After
