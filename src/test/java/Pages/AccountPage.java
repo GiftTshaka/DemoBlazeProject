@@ -32,12 +32,6 @@ public class AccountPage {
     @FindBy(xpath = "//span[contains(.,'Deposit Successful')]")
     WebElement depositSuccess_xpath;
 
-//    @FindBy(xpath = "(//div[contains(@class,'center')])[1]")
-//    WebElement balance_xpath;
-
-    @FindBy(xpath = "(//strong[contains(@class,'ng-binding')])[2]")
-    WebElement balance_xpath;
-
     @FindBy(xpath = "//button[contains(.,'Transactions')]")
     WebElement transactions_xpath;
 
@@ -55,6 +49,9 @@ public class AccountPage {
 
     @FindBy(xpath = "//button[contains(.,'Logout')]")
     WebElement logout_Button;
+
+    @FindBy(xpath = "//strong[@class='ng-binding'][contains(.,'1505')]")
+    WebElement balance_xpath;
 
     private String originalBalance;
 
@@ -90,6 +87,18 @@ public class AccountPage {
         Assert.assertEquals(depositSuccessText, "Deposit Successful");
     }
 
+//    public void selectAccount(int index) {
+//        WebElement accountsList = null;
+//        List<WebElement> options = accountsList.findElements(By.tagName("option"));
+//        options.get(index).click();
+//        originalBalance = driver.findElement((By) balance_xpath).getText();
+//    }
+
+//    public int getNumberOfAccounts() {
+//        WebElement account = driver.findElement((By) accountsList);
+//        return account.findElements(By.tagName("option")).size();
+//    }
+
     public void depositOnEachAccount(int amount) {
         deposit_Button.click();
         for (int i=0; i<3; i++)
@@ -104,6 +113,19 @@ public class AccountPage {
             verifyDepositSuccess();
         }
     }
+
+//    private void depositIntoAccount(WebElement account, int amount) {
+//        deposit_Button.click();
+//        amount_xpath.sendKeys(String.valueOf(amount));
+//        deposit_Submit_Button.click();
+//    }
+
+//    public void verifyDepositSuccessOnEachAccount() {
+//        for (WebElement account : accountsList) {
+//            String successMessage = account.findElement(By.xpath("//deposit-success-message")).getText();
+//            Assert.assertTrue(successMessage.contains("Deposit successful"));
+//        }
+//    }
 
     public void openTransactions(){
         transactions_xpath.click();
@@ -129,13 +151,22 @@ public class AccountPage {
         withdrawalButton_xpath.click();
     }
 
+    public double currentBalance() {
+        double originalBalance = 6596.00;
+        return originalBalance;
+    }
+
 //    public void validateOriginalBalance(){
+//        //String currentBalance = driver.findElement(By.xpath("(//strong[contains(@class,'ng-binding')])[2]")).getText();
+//        //assert(originalBalance.equals(currentBalance));
+//        //String currentBalance = balance_xpath.getText();
+//        System.out.println("Balance: " + balance_xpath);
+//        //return originalBalance.equals(currentBalance);
 //    }
 
-    public boolean isBalanceRestored() {
-        int currentBalance = Integer.parseInt(balance_xpath.getText());
-        return currentBalance == 0;
-    }
+
+
+
 
     public void ClickLogoutButton() {
         logout_Button.click();

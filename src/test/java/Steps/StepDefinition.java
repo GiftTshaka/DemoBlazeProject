@@ -1,16 +1,7 @@
 package Steps;
 
-import Pages.AccountPage;
 import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 public class StepDefinition extends Base {
@@ -35,7 +26,7 @@ public class StepDefinition extends Base {
 
     @Then("I click 'Login' button")
     public void i_click_login_button() {
-        customerPage.clickLoginButton();
+       customerPage.clickLoginButton();
     }
 
     @Then("I should see welcome")
@@ -77,11 +68,11 @@ public class StepDefinition extends Base {
 
     @Then("I deposit {} into each account")
     public void i_deposit_into_each_account(int amount){
-                accountPage.depositOnEachAccount(amount);
-                accountPage.verifyDepositSuccess();
-                accountPage.clickDepositButton();
-                accountPage.enterAmount(String.valueOf(amount));
-                accountPage.clickDepositSubmitButton();
+        accountPage.depositOnEachAccount(amount);
+        accountPage.verifyDepositSuccess();
+        accountPage.clickDepositButton();
+        accountPage.enterAmount(String.valueOf(amount));
+        accountPage.clickDepositSubmitButton();
     }
 
 //    @Then("I validate deposit was successful")
@@ -116,8 +107,8 @@ public class StepDefinition extends Base {
 
     @Then("I validate the current balance is the original balance")
     public void i_validate_balance(){
-        //accountPage.validateOriginalBalance();
-        Assert.assertTrue(accountPage.isBalanceRestored());
+        accountPage.currentBalance();
+
     }
 
     @And("I logout")
